@@ -15,3 +15,7 @@ Route::get('/', function () {
     return view('welcome');
     //return request('name');
 });
+
+$name = request('name');
+
+Route::view('/tim', 'tim.tim', ['name' => $name]);
