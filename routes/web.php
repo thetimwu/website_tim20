@@ -12,10 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('layouts.app');
     //return request('name');
 });
 
 $name = request('name');
 
 Route::view('/tim', 'tim.tim', ['name' => $name]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
