@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     // return view('welcome');
-    return view('layouts.app');
+    return view('layouts.appTim');
     //return request('name');
 });
 

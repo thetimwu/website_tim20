@@ -45,8 +45,7 @@
           <a class="btn-tim" href="mailto:name@email.com">CONTACT ME</a>
         </div>
       </div>
-      
-      
+
       <div class="bottom-container">
         <a class="footer-link" href="https://www.linkedin.com/">LinkedIn</a>
         <a class="footer-link" href="https://twitter.com/">Twitter</a>
