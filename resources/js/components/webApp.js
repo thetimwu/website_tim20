@@ -1,16 +1,28 @@
 import React from "react";
 import NavBar from "./NavBar/NavBar";
-import Intro from "./Tim/Intro";
-import Main from "./Tim/Main";
+import Tim from "./Tim/index";
 import Footer from "./Layout/Footer";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import BlogList from "./Blog/BlogList";
 
 const webApp = () => {
     return (
         <div>
-            <NavBar />
-            <Intro />
-            <Main />
-            <Footer />
+            <Router>
+                <NavBar />
+                <Switch>
+                    <Route path="/">
+                        <Tim />
+                    </Route>
+                    <Route path="/blog">
+                        <BlogList />
+                    </Route>
+                    <Route path="/">
+                        <Tim />
+                    </Route>
+                </Switch>
+                <Footer />
+            </Router>
         </div>
     );
 };

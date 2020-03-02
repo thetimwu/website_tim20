@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    return view('layouts.appTim');
-    //return request('name');
-});
+// Route::get('{reactRoutes}', function () {
+//     return view('layouts.appTim');
+// })->where('reactRoutes', '^((?!api).)*$'); // except 'api' word;
 
-$name = request('name');
+Route::view('/{path?}', 'layouts.appTim')->where('path', '.*')->name('react');
 
-Route::view('/tim', 'tim.tim', ['name' => $name]);
+// $name = request('name');
 
-Auth::routes();
+// Route::view('/tim', 'tim.tim', ['name' => $name]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
