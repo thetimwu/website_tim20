@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -23,43 +23,41 @@ const SideList = props => {
     const classes = useStyles();
     const { side, toggleDrawer } = props;
     return (
-        <Router>
-            <div
-                className={classes.list}
-                role="presentation"
-                onClick={toggleDrawer(side, false)}
-                onKeyDown={toggleDrawer(side, false)}
-            >
-                <List>
-                    <ListItem button>
-                        <ListItemIcon>{<HomeIcon />}</ListItemIcon>
-                        <Link to="/">
-                            <ListItemText primary={"Home"} />
-                        </Link>
+        <div
+            className={classes.list}
+            role="presentation"
+            onClick={toggleDrawer(side, false)}
+            onKeyDown={toggleDrawer(side, false)}
+        >
+            <List>
+                <ListItem button>
+                    <ListItemIcon>{<HomeIcon />}</ListItemIcon>
+                    <Link to="/">
+                        <ListItemText primary={"Home"} />
+                    </Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>{<FaceIcon />}</ListItemIcon>
+                    <Link to="/blog">
+                        <ListItemText primary={"Blog"} />
+                    </Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>{<BuildIcon />}</ListItemIcon>
+                    <Link to="/control-panel">
+                        <ListItemText primary={"Control Panel"} />
+                    </Link>
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                {["All mail", "Trash", "Spam"].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemText primary={text} />
                     </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>{<FaceIcon />}</ListItemIcon>
-                        <Link to="/blog">
-                            <ListItemText primary={"Blog"} />
-                        </Link>
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>{<BuildIcon />}</ListItemIcon>
-                        <Link to="/control-panel">
-                            <ListItemText primary={"Control Panel"} />
-                        </Link>
-                    </ListItem>
-                </List>
-                <Divider />
-                <List>
-                    {["All mail", "Trash", "Spam"].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-            </div>
-        </Router>
+                ))}
+            </List>
+        </div>
     );
 };
 

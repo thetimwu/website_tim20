@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import NavBar from "../NavBar/NavBar";
-import { withRouter } from "react-router-dom";
 
 class BlogList extends Component {
     state = {
@@ -19,4 +18,4 @@ class BlogList extends Component {
     }
 }
 
-export default withRouter(BlogList);
+export default BlogList;
