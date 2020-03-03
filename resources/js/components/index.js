@@ -19,6 +19,9 @@ const theme = createMuiTheme({
             dark: "#ba000d",
             contrastText: "#000"
         }
+    },
+    status: {
+        danger: "red"
     }
     // typography: {
     //     fontFamily: [
