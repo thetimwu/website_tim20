@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -8,6 +8,7 @@ import Divider from "@material-ui/core/Divider";
 import { makeStyles } from "@material-ui/core/styles";
 import FaceIcon from "@material-ui/icons/Face";
 import HomeIcon from "@material-ui/icons/Home";
+import BuildIcon from "@material-ui/icons/Build";
 
 const useStyles = makeStyles(theme => ({
     list: {
@@ -40,6 +41,12 @@ const SideList = props => {
                         <ListItemIcon>{<FaceIcon />}</ListItemIcon>
                         <Link to="/blog">
                             <ListItemText primary={"Blog"} />
+                        </Link>
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>{<BuildIcon />}</ListItemIcon>
+                        <Link to="/control-panel">
+                            <ListItemText primary={"Control Panel"} />
                         </Link>
                     </ListItem>
                 </List>

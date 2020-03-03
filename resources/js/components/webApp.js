@@ -4,26 +4,27 @@ import Tim from "./Tim/index";
 import Footer from "./Layout/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BlogList from "./Blog/BlogList";
+import ControlPanel from "./Tim/ControlPanel";
 
 const webApp = () => {
     return (
-        <div>
-            <Router>
+        <Router>
+            <div>
                 <NavBar />
                 <Switch>
-                    <Route path="/">
+                    <Route exact path="/">
                         <Tim />
                     </Route>
                     <Route path="/blog">
                         <BlogList />
                     </Route>
-                    <Route path="/">
-                        <Tim />
+                    <Route path="/control-panel">
+                        <ControlPanel />
                     </Route>
                 </Switch>
                 <Footer />
-            </Router>
-        </div>
+            </div>
+        </Router>
     );
 };
 
