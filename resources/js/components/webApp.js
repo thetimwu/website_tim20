@@ -3,7 +3,7 @@ import NavBar from "./NavBar/NavBar";
 import Tim from "./Tim/index";
 import Footer from "./Layout/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import BlogList from "./Blog/BlogList";
+import BlogIndex from "./Blog/index";
 import ControlPanel from "./Tim/ControlPanel";
 
 const webApp = () => {
@@ -16,7 +16,7 @@ const webApp = () => {
                         <Tim />
                     </Route>
                     <Route path="/blog">
-                        <BlogList />
+                        <BlogIndex />
                     </Route>
                     <Route path="/control-panel">
                         <ControlPanel />
