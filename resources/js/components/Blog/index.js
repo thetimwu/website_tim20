@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
         height: 20
     }
 }));
+
 const index = () => {
     const classes = useStyles();
     let { path, url } = useRouteMatch();

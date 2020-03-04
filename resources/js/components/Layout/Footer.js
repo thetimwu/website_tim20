@@ -43,14 +43,16 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1
     },
     footer: {
+        marginTop: 10,
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6)
     }
 }));
 
 export default function Footer() {
+    const classes = useStyles();
     return (
-        <div>
+        <div className={classes.footer}>
             <Typography variant="h6" align="center" gutterBottom>
                 Stay Hungry Stay Foolish
             </Typography>
