@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SideList from "./SideList";
+import LoginFormDialog from "../Login/LoginFormDialog";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -36,6 +37,18 @@ const NavBar = () => {
         right: false
     });
 
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+        console.log("open");
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        console.log("close");
+    };
+
     const toggleDrawer = (side, open) => event => {
         if (
             event &&
@@ -46,6 +59,10 @@ const NavBar = () => {
         }
 
         setState({ ...state, [side]: open });
+    };
+
+    const clickHandler = () => {
+        console.log("click handled");
     };
 
     return (
@@ -68,7 +85,9 @@ const NavBar = () => {
                     >
                         Tim Wu is busy doing nothing :-)
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button color="inherit" onClick={handleClickOpen}>
+                        Login
+                    </Button>
                 </Toolbar>
             </AppBar>
             <SwipeableDrawer
@@ -79,6 +98,7 @@ const NavBar = () => {
                 {/* {SideList("left")} */}
                 <SideList side="left" toggleDrawer={toggleDrawer} />
             </SwipeableDrawer>
+            <LoginFormDialog handleClose={handleClose} open={open} />
         </div>
     );
 };
