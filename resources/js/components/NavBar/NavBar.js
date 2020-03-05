@@ -41,12 +41,10 @@ const NavBar = () => {
 
     const handleClickOpen = () => {
         setOpen(true);
-        console.log("open");
     };
 
     const handleClose = () => {
         setOpen(false);
-        console.log("close");
     };
 
     const toggleDrawer = (side, open) => event => {
@@ -59,10 +57,6 @@ const NavBar = () => {
         }
 
         setState({ ...state, [side]: open });
-    };
-
-    const clickHandler = () => {
-        console.log("click handled");
     };
 
     return (
