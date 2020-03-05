@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
@@ -14,6 +11,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import useFormValidation from "./useFormValication";
+import validateAuth from "./validateAuth";
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -38,6 +37,19 @@ const useStyles = makeStyles(theme => ({
 export default function LoginFormDialog(props) {
     const classes = useStyles();
     const { handleClose, open } = props;
+    const initialState = {
+        email: "",
+        password: ""
+    };
+
+    const {
+        changeHandler,
+        value,
+        submitHandler,
+        blurHandler,
+        error,
+        isSubmitting
+    } = useFormValidation(initialState, validateAuth);
 
     return (
         <div>
@@ -64,7 +76,12 @@ export default function LoginFormDialog(props) {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
+                                value={value.email}
                                 autoFocus
+                                onChange={changeHandler}
+                                onBlur={blurHandler}
+                                // error={error.email}
+                                // helperText={error.email && error.email}
                             />
                             <TextField
                                 variant="outlined"
@@ -75,7 +92,12 @@ export default function LoginFormDialog(props) {
                                 label="Password"
                                 type="password"
                                 id="password"
+                                value={value.password}
                                 autoComplete="current-password"
+                                onChange={changeHandler}
+                                onBlur={blurHandler}
+                                // error={error.password}
+                                // helperText={error.password && error.password}
                             />
                             <FormControlLabel
                                 control={
@@ -92,6 +114,8 @@ export default function LoginFormDialog(props) {
                                 variant="contained"
                                 color="primary"
                                 className={classes.submit}
+                                onClick={submitHandler}
+                                disabled={isSubmitting}
                             >
                                 Sign In
                             </Button>
