@@ -100799,9 +100799,9 @@ function LoginFormDialog(props) {
     value: value.email,
     autoFocus: true,
     onChange: changeHandler,
-    onBlur: blurHandler // error={error.email}
-    // helperText={error.email && error.email}
-
+    onBlur: blurHandler,
+    error: !!error.email,
+    helperText: !!error.email && error.email
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     variant: "outlined",
     margin: "normal",
@@ -100814,9 +100814,9 @@ function LoginFormDialog(props) {
     value: value.password,
     autoComplete: "current-password",
     onChange: changeHandler,
-    onBlur: blurHandler // error={error.password}
-    // helperText={error.password && error.password}
-
+    onBlur: blurHandler,
+    error: !!error.password,
+    helperText: !!error.password && error.password
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__["default"], {
     control: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Checkbox__WEBPACK_IMPORTED_MODULE_9__["default"], {
       value: "remember",
@@ -100830,7 +100830,7 @@ function LoginFormDialog(props) {
     color: "primary",
     className: classes.submit,
     onClick: submitHandler,
-    disabled: isSubmitting
+    disabled: !isSubmitting
   }, "Sign In"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
     container: true
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -100897,10 +100897,9 @@ var useFormValication = function useFormValication(initialState, validate) {
       var noError = Object.keys(error).length === 0;
 
       if (noError) {
-        console.log("useEffect no error: " + value);
-        setSubmitting(false);
+        setSubmitting(true);
       } else {
-        setSubmitting(false); // console.error(error);
+        setSubmitting(false);
       }
     }
   }, [error]);
@@ -100911,7 +100910,20 @@ var useFormValication = function useFormValication(initialState, validate) {
 
   var blurHandler = function blurHandler() {
     var validationError = validate(value);
-    setError(validationError);
+
+    if (Object.entries(validationError).length === 0 && validationError.constructor === Object) {
+      setSubmitting(true);
+      setError({});
+    } // else if (
+    //     !!value["email"].length &&
+    //     validationError.password === "Required"
+    // ) {
+    //     validationError.password = undefined;
+    //     setError(validationError);
+    // }
+    else {
+        setError(validationError);
+      }
   };
 
   var submitHandler = function submitHandler(e) {
@@ -100920,7 +100932,6 @@ var useFormValication = function useFormValication(initialState, validate) {
     setError(validationError);
     setSubmitting(true);
     console.log(value);
-    console.log(validationError);
   };
 
   return {
@@ -100952,7 +100963,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var validateAuth = function validateAuth(values) {
   var errors = {};
-  console.log(values);
 
   if (!values.email) {
     errors.email = "Required";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -80,8 +80,8 @@ export default function LoginFormDialog(props) {
                                 autoFocus
                                 onChange={changeHandler}
                                 onBlur={blurHandler}
-                                // error={error.email}
-                                // helperText={error.email && error.email}
+                                error={!!error.email}
+                                helperText={!!error.email && error.email}
                             />
                             <TextField
                                 variant="outlined"
@@ -96,8 +96,8 @@ export default function LoginFormDialog(props) {
                                 autoComplete="current-password"
                                 onChange={changeHandler}
                                 onBlur={blurHandler}
-                                // error={error.password}
-                                // helperText={error.password && error.password}
+                                error={!!error.password}
+                                helperText={!!error.password && error.password}
                             />
                             <FormControlLabel
                                 control={
@@ -115,7 +115,7 @@ export default function LoginFormDialog(props) {
                                 color="primary"
                                 className={classes.submit}
                                 onClick={submitHandler}
-                                disabled={isSubmitting}
+                                disabled={!isSubmitting}
                             >
                                 Sign In
                             </Button>

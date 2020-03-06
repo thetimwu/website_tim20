@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const useFormValication = (initialState, validate) => {
     const [value, setValue] = useState(initialState);
@@ -9,11 +9,9 @@ const useFormValication = (initialState, validate) => {
         if (isSubmitting) {
             const noError = Object.keys(error).length === 0;
             if (noError) {
-                console.log("useEffect no error: " + value);
-                setSubmitting(false);
+                setSubmitting(true);
             } else {
                 setSubmitting(false);
-                // console.error(error);
             }
         }
     }, [error]);
@@ -27,7 +25,24 @@ const useFormValication = (initialState, validate) => {
 
     const blurHandler = () => {
         const validationError = validate(value);
-        setError(validationError);
+
+        if (
+            Object.entries(validationError).length === 0 &&
+            validationError.constructor === Object
+        ) {
+            setSubmitting(true);
+            setError({});
+        }
+        // else if (
+        //     !!value["email"].length &&
+        //     validationError.password === "Required"
+        // ) {
+        //     validationError.password = undefined;
+        //     setError(validationError);
+        // }
+        else {
+            setError(validationError);
+        }
     };
 
     const submitHandler = e => {
@@ -36,7 +51,6 @@ const useFormValication = (initialState, validate) => {
         setError(validationError);
         setSubmitting(true);
         console.log(value);
-        console.log(validationError);
     };
 
     return {

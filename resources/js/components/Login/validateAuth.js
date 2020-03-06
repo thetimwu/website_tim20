@@ -3,7 +3,6 @@ import React from "react";
 const validateAuth = values => {
     let errors = {};
 
-    console.log(values);
     if (!values.email) {
         errors.email = "Required";
     } else if (
