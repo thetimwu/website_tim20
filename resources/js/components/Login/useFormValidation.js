@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
-const useFormValication = (initialState, validate) => {
+// future work --- add firebase authentication
+const useFormValidation = (initialState, validate) => {
     const [value, setValue] = useState(initialState);
     const [error, setError] = useState({});
     const [isSubmitting, setSubmitting] = useState(false);
@@ -63,4 +64,4 @@ const useFormValication = (initialState, validate) => {
     };
 };
 
-export default useFormValication;
+export default useFormValidation;

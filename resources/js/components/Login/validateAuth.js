@@ -1,5 +1,3 @@
-import React from "react";
-
 const validateAuth = values => {
     let errors = {};
 

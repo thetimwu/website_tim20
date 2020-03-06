@@ -11,7 +11,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import useFormValidation from "./useFormValication";
+import useFormValidation from "./useFormValidation";
 import validateAuth from "./validateAuth";
 
 const useStyles = makeStyles(theme => ({

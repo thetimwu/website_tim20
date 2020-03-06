@@ -100717,7 +100717,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
 /* harmony import */ var _material_ui_icons_LockOutlined__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/icons/LockOutlined */ "./node_modules/@material-ui/icons/LockOutlined.js");
 /* harmony import */ var _material_ui_icons_LockOutlined__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_LockOutlined__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _useFormValication__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./useFormValication */ "./resources/js/components/Login/useFormValication.js");
+/* harmony import */ var _useFormValidation__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./useFormValidation */ "./resources/js/components/Login/useFormValidation.js");
 /* harmony import */ var _validateAuth__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./validateAuth */ "./resources/js/components/Login/validateAuth.js");
 
 
@@ -100765,7 +100765,7 @@ function LoginFormDialog(props) {
     password: ""
   };
 
-  var _useFormValidation = Object(_useFormValication__WEBPACK_IMPORTED_MODULE_13__["default"])(initialState, _validateAuth__WEBPACK_IMPORTED_MODULE_14__["default"]),
+  var _useFormValidation = Object(_useFormValidation__WEBPACK_IMPORTED_MODULE_13__["default"])(initialState, _validateAuth__WEBPACK_IMPORTED_MODULE_14__["default"]),
       changeHandler = _useFormValidation.changeHandler,
       value = _useFormValidation.value,
       submitHandler = _useFormValidation.submitHandler,
@@ -100849,9 +100849,9 @@ function LoginFormDialog(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Login/useFormValication.js":
+/***/ "./resources/js/components/Login/useFormValidation.js":
 /*!************************************************************!*\
-  !*** ./resources/js/components/Login/useFormValication.js ***!
+  !*** ./resources/js/components/Login/useFormValidation.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -100874,9 +100874,9 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+ // future work --- add firebase authentication
 
-
-var useFormValication = function useFormValication(initialState, validate) {
+var useFormValidation = function useFormValidation(initialState, validate) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(initialState),
       _useState2 = _slicedToArray(_useState, 2),
       value = _useState2[0],
@@ -100944,7 +100944,7 @@ var useFormValication = function useFormValication(initialState, validate) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (useFormValication);
+/* harmony default export */ __webpack_exports__["default"] = (useFormValidation);
 
 /***/ }),
 
@@ -100957,10 +100957,6 @@ var useFormValication = function useFormValication(initialState, validate) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
 var validateAuth = function validateAuth(values) {
   var errors = {};
 
