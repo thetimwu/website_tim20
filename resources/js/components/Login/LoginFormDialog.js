@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function LoginFormDialog(props) {
+function LoginFormDialog(props) {
     const classes = useStyles();
     const { handleClose, open } = props;
     const initialState = {
@@ -138,3 +138,5 @@ export default function LoginFormDialog(props) {
         </div>
     );
 }
+
+export default LoginFormDialog;

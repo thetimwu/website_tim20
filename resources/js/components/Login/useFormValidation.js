@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import * as ActionTypes from "../store/action/actionTypes";
 
 // future work --- add firebase authentication
 const useFormValidation = (initialState, validate) => {
@@ -51,6 +53,7 @@ const useFormValidation = (initialState, validate) => {
         const validationError = validate(value);
         setError(validationError);
         setSubmitting(true);
+        this.props.onLogin(value);
         console.log(value);
     };
 
@@ -64,4 +67,18 @@ const useFormValidation = (initialState, validate) => {
     };
 };
 
-export default useFormValidation;
+const mapStateToProps = () => {
+    return {};
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogin: loginData =>
+            dispatch({
+                type: ActionTypes.LOGIN_REQUEST,
+                payload: loginData
+            })
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(useFormValidation);

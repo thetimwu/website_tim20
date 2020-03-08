@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import WebApp from "./webApp";
-import { useTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core/styles";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const theme = createMuiTheme({
     palette: {
@@ -42,9 +43,11 @@ const theme = createMuiTheme({
 class App extends Component {
     render() {
         return (
-            <ThemeProvider theme={theme}>
-                <WebApp />
-            </ThemeProvider>
+            <Provider store={store}>
+                <ThemeProvider theme={theme}>
+                    <WebApp />
+                </ThemeProvider>
+            </Provider>
         );
     }
 }
