@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as ActionTypes from "../store/action/actionTypes";
 
 // future work --- add firebase authentication
@@ -7,6 +7,10 @@ const useFormValidation = (initialState, validate) => {
     const [value, setValue] = useState(initialState);
     const [error, setError] = useState({});
     const [isSubmitting, setSubmitting] = useState(false);
+
+    const email = useSelector(state => state.email);
+    const password = useSelector(state => state.password);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (isSubmitting) {
@@ -53,7 +57,8 @@ const useFormValidation = (initialState, validate) => {
         const validationError = validate(value);
         setError(validationError);
         setSubmitting(true);
-        this.props.onLogin(value);
+        // this.props.onLogin(value);
+        // dispatch()
         console.log(value);
     };
 
@@ -81,4 +86,5 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(useFormValidation);
+// export default connect(mapStateToProps, mapDispatchToProps)(useFormValidation);
+export default useFormValidation;

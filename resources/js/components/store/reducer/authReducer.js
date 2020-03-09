@@ -11,6 +11,8 @@ const authReducer = (state = initState, action) => {
     switch (action.type) {
         case ActionTypes.LOGIN_REQUEST:
             return state;
+        default:
+            return state;
     }
     return state;
 };
