@@ -15,7 +15,7 @@
 //     return view('layouts.appTim');
 // })->where('reactRoutes', '^((?!api).)*$'); // except 'api' word;
 
-Route::view('/{path?}', 'layouts.appTim')->where('path', '.*')->name('react');
+Route::view('/{path?}', 'layouts.appTim')->where('path', '^((?!api).)*$')->name('react');
 
 // $name = request('name');
 
