@@ -18,3 +18,7 @@ use Illuminate\Http\Request;
 // });
 
 Route::resource('users', 'UserController');
+
+Route::post('login', 'Auth\LoginController@login')->name('login');
+
+// Route::post('login', 'Auth\LoginController@login');

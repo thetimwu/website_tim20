@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -35,5 +39,27 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request)
+    {
+        // $credentials = $request->only('email', 'password');
+
+        $authenticatedUser = User::where([
+            ['email', '=', $request->email]
+        ])->first();
+
+        if (Hash::check($request->password, $authenticatedUser->password)) {
+            return $authenticatedUser->api_token;
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized user!!!'
+            ]);
+        }
+    }
+
+    public function logout()
+    {
+        // Auth::logout();
     }
 }
