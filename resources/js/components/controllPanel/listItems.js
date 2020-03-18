@@ -4,11 +4,11 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import PeopleIcon from "@material-ui/icons/People";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
 import AssignmentIcon from "@material-ui/icons/Assignment";
+import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import { Link } from "react-router-dom";
 
 export const mainListItems = (
@@ -23,7 +23,7 @@ export const mainListItems = (
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <ShoppingCartIcon />
+                <HomeRoundedIcon />
             </ListItemIcon>
             <Link to="/homepage">
                 <ListItemText primary="Home Page" />
@@ -39,7 +39,7 @@ export const mainListItems = (
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <BarChartIcon />
+                <LayersIcon />
             </ListItemIcon>
             <Link to="/blog-panel">
                 <ListItemText primary="Blog Management" />
@@ -47,7 +47,7 @@ export const mainListItems = (
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <LayersIcon />
+                <BarChartIcon />
             </ListItemIcon>
             <ListItemText primary="Others" />
         </ListItem>
