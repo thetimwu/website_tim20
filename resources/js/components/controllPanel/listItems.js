@@ -9,7 +9,7 @@ import PeopleIcon from "@material-ui/icons/People";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
 import AssignmentIcon from "@material-ui/icons/Assignment";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const mainListItems = (
     <div>
@@ -25,7 +25,7 @@ export const mainListItems = (
             <ListItemIcon>
                 <ShoppingCartIcon />
             </ListItemIcon>
-            <Link to="/">
+            <Link to="/homepage">
                 <ListItemText primary="Home Page" />
             </Link>
         </ListItem>

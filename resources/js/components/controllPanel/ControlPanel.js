@@ -1,27 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { mainListItems, secondaryListItems } from "./listItems";
-// import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useHistory
+} from "react-router-dom";
 import UserPanel from "./UserPanel";
 import BlogPanel from "./BlogPanel";
 import AppBarCP from "./Appbar";
-import NavBar from "../NavBar/NavBar";
-import Tim from "../Tim/index";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -104,9 +98,18 @@ const useStyles = makeStyles(theme => ({
 
 const drawerWidth = 240;
 
-export default function Dashboard() {
+const Dashboard = () => {
+    let history = useHistory();
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
+    const [isHomePage, setHomePage] = useState(false);
+
+    useEffect(() => {
+        if (isHomePage) {
+            history.push("/");
+        }
+    }, [isHomePage]);
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -114,6 +117,8 @@ export default function Dashboard() {
         setOpen(false);
     };
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+    const handleHomePage = () => setHomePage(true);
 
     const dashboard = (
         <main className={classes.content}>
@@ -146,38 +151,28 @@ export default function Dashboard() {
         <Router>
             <div className={classes.root}>
                 <CssBaseline />
-
+                <AppBarCP
+                    handleDrawerOpen={handleDrawerOpen}
+                    handleDrawerClose={handleDrawerClose}
+                    open={open}
+                />
                 <Switch>
-                    <Route path="/control-panel">
-                        <AppBarCP
-                            handleDrawerOpen={handleDrawerOpen}
-                            handleDrawerClose={handleDrawerClose}
-                            open={open}
-                        />
-                        {dashboard}
-                    </Route>
-                    <Route exact path="/">
-                        <NavBar />
-                        <Tim />
-                    </Route>
+                    <Route path="/control-panel">{dashboard}</Route>
+                    <Route
+                        exact
+                        path="/homepage"
+                        render={handleHomePage}
+                    ></Route>
                     <Route path="/user-panel">
-                        <AppBarCP
-                            handleDrawerOpen={handleDrawerOpen}
-                            handleDrawerClose={handleDrawerClose}
-                            open={open}
-                        />
                         <UserPanel />
                     </Route>
                     <Route path="/blog-panel">
-                        <AppBarCP
-                            handleDrawerOpen={handleDrawerOpen}
-                            handleDrawerClose={handleDrawerClose}
-                            open={open}
-                        />
                         <BlogPanel />
                     </Route>
                 </Switch>
             </div>
         </Router>
     );
-}
+};
+
+export default Dashboard;
