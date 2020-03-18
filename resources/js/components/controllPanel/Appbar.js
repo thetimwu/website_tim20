@@ -96,25 +96,30 @@ const useStyles = makeStyles(theme => ({
 
 const AppBarCP = props => {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(true);
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
 
     return (
         <React.Fragment>
             <AppBar
                 position="absolute"
-                className={clsx(
-                    classes.appBar,
-                    props.open && classes.appBarShift
-                )}
+                className={clsx(classes.appBar, open && classes.appBarShift)}
             >
                 <Toolbar className={classes.toolbar}>
                     <IconButton
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={props.handleDrawerOpen}
+                        onClick={handleDrawerOpen}
                         className={clsx(
                             classes.menuButton,
-                            props.open && classes.menuButtonHidden
+                            open && classes.menuButtonHidden
                         )}
                     >
                         <MenuIcon />
@@ -141,10 +146,10 @@ const AppBarCP = props => {
                         !open && classes.drawerPaperClose
                     )
                 }}
-                open={props.open}
+                open={open}
             >
                 <div className={classes.toolbarIcon}>
-                    <IconButton onClick={props.handleDrawerClose}>
+                    <IconButton onClick={handleDrawerClose}>
                         <ChevronLeftIcon />
                     </IconButton>
                 </div>

@@ -105104,6 +105104,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/icons/ChevronLeft */ "./node_modules/@material-ui/icons/ChevronLeft.js");
 /* harmony import */ var _material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _listItems__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./listItems */ "./resources/js/components/controllPanel/listItems.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -105207,17 +105215,31 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["ma
 
 var AppBarCP = function AppBarCP(props) {
   var classes = useStyles();
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(true),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      open = _React$useState2[0],
+      setOpen = _React$useState2[1];
+
+  var handleDrawerOpen = function handleDrawerOpen() {
+    setOpen(true);
+  };
+
+  var handleDrawerClose = function handleDrawerClose() {
+    setOpen(false);
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_10__["default"], {
     position: "absolute",
-    className: Object(clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(classes.appBar, props.open && classes.appBarShift)
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(classes.appBar, open && classes.appBarShift)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: classes.toolbar
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
     edge: "start",
     color: "inherit",
     "aria-label": "open drawer",
-    onClick: props.handleDrawerOpen,
-    className: Object(clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(classes.menuButton, props.open && classes.menuButtonHidden)
+    onClick: handleDrawerOpen,
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(classes.menuButton, open && classes.menuButtonHidden)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_8___default.a, null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_5__["default"], {
     component: "h1",
     variant: "h6",
@@ -105231,11 +105253,11 @@ var AppBarCP = function AppBarCP(props) {
     classes: {
       paper: Object(clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(classes.drawerPaper, !open && classes.drawerPaperClose)
     },
-    open: props.open
+    open: open
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.toolbarIcon
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    onClick: props.handleDrawerClose
+    onClick: handleDrawerClose
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_11___default.a, null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_4__["default"], null, _listItems__WEBPACK_IMPORTED_MODULE_12__["mainListItems"]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Divider__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_4__["default"], null, _listItems__WEBPACK_IMPORTED_MODULE_12__["secondaryListItems"])));
 };
 
@@ -105403,11 +105425,6 @@ var Dashboard = function Dashboard() {
   var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["useHistory"])();
   var classes = useStyles();
 
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(true),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      open = _React$useState2[0],
-      setOpen = _React$useState2[1];
-
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       isHomePage = _useState2[0],
@@ -105418,15 +105435,6 @@ var Dashboard = function Dashboard() {
       history.push("/");
     }
   }, [isHomePage]);
-
-  var handleDrawerOpen = function handleDrawerOpen() {
-    setOpen(true);
-  };
-
-  var handleDrawerClose = function handleDrawerClose() {
-    setOpen(false);
-  };
-
   var fixedHeightPaper = Object(clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(classes.paper, classes.fixedHeight);
 
   var handleHomePage = function handleHomePage() {
@@ -105465,11 +105473,7 @@ var Dashboard = function Dashboard() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Orders__WEBPACK_IMPORTED_MODULE_8__["default"], null))))));
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.root
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CssBaseline__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Appbar__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    handleDrawerOpen: handleDrawerOpen,
-    handleDrawerClose: handleDrawerClose,
-    open: open
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Route"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CssBaseline__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Appbar__WEBPACK_IMPORTED_MODULE_12__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Route"], {
     path: "/control-panel"
   }, dashboard), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Route"], {
     exact: true,

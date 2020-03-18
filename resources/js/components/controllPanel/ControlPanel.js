@@ -101,7 +101,7 @@ const drawerWidth = 240;
 const Dashboard = () => {
     let history = useHistory();
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
+
     const [isHomePage, setHomePage] = useState(false);
 
     useEffect(() => {
@@ -110,12 +110,6 @@ const Dashboard = () => {
         }
     }, [isHomePage]);
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     const handleHomePage = () => setHomePage(true);
@@ -151,11 +145,7 @@ const Dashboard = () => {
         <Router>
             <div className={classes.root}>
                 <CssBaseline />
-                <AppBarCP
-                    handleDrawerOpen={handleDrawerOpen}
-                    handleDrawerClose={handleDrawerClose}
-                    open={open}
-                />
+                <AppBarCP />
                 <Switch>
                     <Route path="/control-panel">{dashboard}</Route>
                     <Route
