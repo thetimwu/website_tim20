@@ -62,7 +62,7 @@ const index = () => {
                     <Route exact path={path}>
                         <BlogList />
                     </Route>
-                    <Route path={`${path}/create`}>
+                    <Route exact path={`${path}/create`}>
                         <BlogInput />
                     </Route>
                 </Switch>

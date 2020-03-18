@@ -4,18 +4,19 @@ import Tim from "./Tim/index";
 import Footer from "./Layout/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BlogIndex from "./Blog/index";
-import ControlPanel from "./Tim/ControlPanel";
+import ControlPanel from "./controllPanel/ControlPanel";
 
 const webApp = () => {
     return (
         <Router>
             <div>
-                <NavBar />
                 <Switch>
                     <Route exact path="/">
+                        <NavBar />
                         <Tim />
                     </Route>
                     <Route path="/blog">
+                        <NavBar />
                         <BlogIndex />
                     </Route>
                     <Route path="/control-panel">
