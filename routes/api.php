@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 
 Route::resource('users', 'UserController');
 
-Route::post('login', 'Auth\LoginController@login')->name('login');
-
-// Route::post('login', 'Auth\LoginController@login');
+Route::prefix('user')->group(function () {
+    Route::post('/login', 'api\LoginController@login')->name('login');
+    Route::post('/register', 'api\RegisterController@register')->name('register');
+});
