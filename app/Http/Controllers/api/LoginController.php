@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,11 +20,25 @@ class LoginController extends Controller
                 'message' => 'Logged in',
                 'user' => Auth::user(),
                 'accessToken' => $accessToken
-            ]);
+            ], 200);
         } else {
             return response()->json([
                 'message' => 'Invalid credentials'
-            ]);
+            ], 401);
         }
+    }
+
+    public function logout()
+    {
+        if (Auth::check()) {
+            Auth::user()->AauthAcessToken()->delete();
+            return response()->json([
+                'message' => 'Successfully logged out'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'cannot find user'
+            ]);
+        };
     }
 }

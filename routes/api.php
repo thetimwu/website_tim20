@@ -21,5 +21,6 @@ Route::resource('users', 'UserController');
 
 Route::prefix('user')->group(function () {
     Route::post('/login', 'api\LoginController@login')->name('login');
+    Route::post('/logout', 'api\LoginController@logout')->name('logout');
     Route::post('/register', 'api\RegisterController@register')->name('register');
 });
