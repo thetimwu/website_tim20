@@ -5,6 +5,10 @@ import Footer from "./Layout/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BlogIndex from "./Blog/index";
 import ControlPanel from "./controllPanel/ControlPanel";
+import DataStructure from "./dataStructure/dataStructrue";
+import Algorithm from "./algorithm/algorithm";
+import Fun from "./fun/fun";
+import Programming from "./programming/programming";
 
 const webApp = () => {
     return (
@@ -18,6 +22,22 @@ const webApp = () => {
                     <Route path="/blog">
                         <NavBar />
                         <BlogIndex />
+                    </Route>
+                    <Route path="/data-structure">
+                        <NavBar />
+                        <DataStructure />
+                    </Route>
+                    <Route path="/algorithm">
+                        <NavBar />
+                        <Algorithm />
+                    </Route>
+                    <Route path="/fun">
+                        <NavBar />
+                        <Fun />
+                    </Route>
+                    <Route path="/Programming">
+                        <NavBar />
+                        <Programming />
                     </Route>
                     <Route path="/control-panel">
                         <ControlPanel />

@@ -9,6 +9,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import FaceIcon from "@material-ui/icons/Face";
 import HomeIcon from "@material-ui/icons/Home";
 import BuildIcon from "@material-ui/icons/Build";
+import StorageRoundedIcon from "@material-ui/icons/StorageRounded";
+import AllInclusiveRoundedIcon from "@material-ui/icons/AllInclusiveRounded";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import VideogameAssetIcon from "@material-ui/icons/VideogameAsset";
 
 const useStyles = makeStyles(theme => ({
     list: {
@@ -40,6 +44,30 @@ const SideList = props => {
                     <ListItemIcon>{<FaceIcon />}</ListItemIcon>
                     <Link to="/blog">
                         <ListItemText primary={"Blog"} />
+                    </Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>{<StorageRoundedIcon />}</ListItemIcon>
+                    <Link to="/data-structure">
+                        <ListItemText primary={"Data Structure"} />
+                    </Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>{<AllInclusiveRoundedIcon />}</ListItemIcon>
+                    <Link to="/algorithm">
+                        <ListItemText primary={"Algorithm"} />
+                    </Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>{<GitHubIcon />}</ListItemIcon>
+                    <Link to="/programming">
+                        <ListItemText primary={"Programming"} />
+                    </Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>{<VideogameAssetIcon />}</ListItemIcon>
+                    <Link to="/fun">
+                        <ListItemText primary={"Fun"} />
                     </Link>
                 </ListItem>
                 <ListItem button>
