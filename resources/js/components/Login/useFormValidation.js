@@ -1,6 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as ActionTypes from "../store/action/actionTypes";
+import {
+    login_request,
+    login_success,
+    login_failure
+} from "../store/action/authActions";
 
 // future work --- add firebase authentication
 const useFormValidation = (initialState, validate) => {
@@ -8,9 +12,10 @@ const useFormValidation = (initialState, validate) => {
     const [error, setError] = useState({});
     const [isSubmitting, setSubmitting] = useState(false);
 
-    const email = useSelector(state => state.email);
-    const password = useSelector(state => state.password);
+    // const email = useSelector(state => state.email);
+    // const password = useSelector(state => state.password);
     const dispatch = useDispatch();
+    const url_login = `http://tim.test:8080/api/user/login`;
 
     useEffect(() => {
         if (isSubmitting) {
@@ -52,14 +57,42 @@ const useFormValidation = (initialState, validate) => {
         }
     };
 
+    const makeRequest = useCallback(
+        async (email, password) => {
+            try {
+                const response = await axios.post(url_login, {
+                    email: email,
+                    password: password
+                });
+
+                if (response.status === 200) {
+                    console.log(response.data);
+                    dispatch(
+                        login_success(
+                            response.data.accessToken,
+                            response.data.user
+                        )
+                    );
+                } else {
+                    console.log(response);
+                    throw new Error("api calling error!");
+                }
+            } catch (e) {
+                console.error(e);
+                dispatch(login_failure(e));
+            }
+        },
+        [url_login, dispatch]
+    );
+
     const submitHandler = e => {
         e.preventDefault();
         const validationError = validate(value);
         setError(validationError);
         setSubmitting(true);
-        // this.props.onLogin(value);
-        // dispatch()
-        console.log(value);
+        dispatch(login_request());
+        makeRequest(value.email, value.password);
+        // console.log(value);
     };
 
     return {
@@ -72,19 +105,19 @@ const useFormValidation = (initialState, validate) => {
     };
 };
 
-const mapStateToProps = () => {
-    return {};
-};
+// const mapStateToProps = () => {
+//     return {};
+// };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onLogin: loginData =>
-            dispatch({
-                type: ActionTypes.LOGIN_REQUEST,
-                payload: loginData
-            })
-    };
-};
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         onLogin: loginData =>
+//             dispatch({
+//                 type: ActionTypes.LOGIN_REQUEST,
+//                 payload: loginData
+//             })
+//     };
+// };
 
 // export default connect(mapStateToProps, mapDispatchToProps)(useFormValidation);
 export default useFormValidation;
