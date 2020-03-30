@@ -34,7 +34,7 @@ class LoginController extends Controller
             Auth::user()->AauthAcessToken()->delete();
             return response()->json([
                 'message' => 'Successfully logged out'
-            ]);
+            ], 200);
         } else {
             return response()->json([
                 'message' => 'cannot find user'

@@ -13,8 +13,8 @@ import {
     Route,
     useHistory
 } from "react-router-dom";
-import UserPanel from "./UserPanel";
-import BlogPanel from "./BlogPanel";
+import UserPanel from "./UserPanel/UserPanel";
+import BlogPanel from "./BlogPanel/BlogPanel";
 import AppBarCP from "./Appbar";
 
 const useStyles = makeStyles(theme => ({

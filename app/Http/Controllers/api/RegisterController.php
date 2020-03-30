@@ -17,11 +17,12 @@ class RegisterController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        if ($validatedUser->fails()) {
-            return response()->json([
-                'error' => $validatedUser->errors()
-            ], 401);
-        }
+        // add error details to response automatically by laravel
+        // if ($validatedUser->fails()) {
+        //     return response()->json([
+        //         'error' => $validatedUser->errors()
+        //     ], 401);
+        // }
 
         $validatedUser['password'] = Hash::make($request->password);
 
