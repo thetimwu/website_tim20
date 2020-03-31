@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -9,6 +9,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import SideList from "./SideList";
 import LoginFormDialog from "../Login/LoginFormDialog";
+import { useDispatch, useSelector } from "react-redux";
+import { logout_success } from "../store/action/authActions";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -59,6 +61,12 @@ const NavBar = () => {
         setState({ ...state, [side]: open });
     };
 
+    const isLogin = useSelector(state => state.authReducer.accessToken);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        isLogin && setOpen(false);
+    }, [isLogin]);
+
     return (
         <div className={classes.root}>
             <AppBar position="fixed">
@@ -79,9 +87,18 @@ const NavBar = () => {
                     >
                         Tim Wu is busy doing nothing :-)
                     </Typography>
-                    <Button color="inherit" onClick={handleClickOpen}>
-                        Login
-                    </Button>
+                    {isLogin ? (
+                        <Button
+                            color="inherit"
+                            onClick={() => dispatch(logout_success())}
+                        >
+                            Logout
+                        </Button>
+                    ) : (
+                        <Button color="inherit" onClick={handleClickOpen}>
+                            Login
+                        </Button>
+                    )}
                 </Toolbar>
             </AppBar>
             <SwipeableDrawer

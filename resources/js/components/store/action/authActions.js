@@ -41,3 +41,9 @@ export const register_failure = error => {
         error: { error }
     };
 };
+
+export const logout_success = () => {
+    return {
+        type: ActionTypes.LOGOUT_SUCCESS
+    };
+};

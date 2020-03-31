@@ -106777,6 +106777,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_SwipeableDrawer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/SwipeableDrawer */ "./node_modules/@material-ui/core/esm/SwipeableDrawer/index.js");
 /* harmony import */ var _SideList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./SideList */ "./resources/js/components/NavBar/SideList.js");
 /* harmony import */ var _Login_LoginFormDialog__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Login/LoginFormDialog */ "./resources/js/components/Login/LoginFormDialog.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_action_authActions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../store/action/authActions */ "./resources/js/components/store/action/authActions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -106790,6 +106792,8 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -106858,6 +106862,13 @@ var NavBar = function NavBar() {
     };
   };
 
+  var isLogin = Object(react_redux__WEBPACK_IMPORTED_MODULE_11__["useSelector"])(function (state) {
+    return state.authReducer.accessToken;
+  });
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_11__["useDispatch"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    isLogin && setOpen(false);
+  }, [isLogin]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.root
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -106872,7 +106883,12 @@ var NavBar = function NavBar() {
     variant: "h6",
     className: classes.title,
     fontStyle: "oblique"
-  }, "Tim Wu is busy doing nothing :-)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "Tim Wu is busy doing nothing :-)"), isLogin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    color: "inherit",
+    onClick: function onClick() {
+      return dispatch(Object(_store_action_authActions__WEBPACK_IMPORTED_MODULE_12__["logout_success"])());
+    }
+  }, "Logout") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
     color: "inherit",
     onClick: handleClickOpen
   }, "Login"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_SwipeableDrawer__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -108506,7 +108522,7 @@ var programming = function programming() {
 /*!*************************************************************!*\
   !*** ./resources/js/components/store/action/actionTypes.js ***!
   \*************************************************************/
-/*! exports provided: LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE */
+/*! exports provided: LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT_SUCCESS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -108517,12 +108533,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTER_REQUEST", function() { return REGISTER_REQUEST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTER_SUCCESS", function() { return REGISTER_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTER_FAILURE", function() { return REGISTER_FAILURE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT_SUCCESS", function() { return LOGOUT_SUCCESS; });
 var LOGIN_REQUEST = "LOGIN_REQUEST";
 var LOGIN_SUCCESS = "LOGIN_SUCCESS";
 var LOGIN_FAILURE = "LOGIN_FAILURE";
 var REGISTER_REQUEST = "REGISTER_REQUEST";
 var REGISTER_SUCCESS = "REGISTER_SUCCESS";
 var REGISTER_FAILURE = "REGISTER_FAILURE";
+var LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
 /***/ }),
 
@@ -108530,7 +108548,7 @@ var REGISTER_FAILURE = "REGISTER_FAILURE";
 /*!*************************************************************!*\
   !*** ./resources/js/components/store/action/authActions.js ***!
   \*************************************************************/
-/*! exports provided: login_request, login_success, login_failure, register_request, register_success, register_failure */
+/*! exports provided: login_request, login_success, login_failure, register_request, register_success, register_failure, logout_success */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -108541,6 +108559,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register_request", function() { return register_request; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register_success", function() { return register_success; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register_failure", function() { return register_failure; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout_success", function() { return logout_success; });
 /* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actionTypes */ "./resources/js/components/store/action/actionTypes.js");
 
 var login_request = function login_request() {
@@ -108587,6 +108606,11 @@ var register_failure = function register_failure(error) {
     error: {
       error: error
     }
+  };
+};
+var logout_success = function logout_success() {
+  return {
+    type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_SUCCESS"]
   };
 };
 
@@ -108660,6 +108684,14 @@ var authReducer = function authReducer() {
     case _action_actionTypes__WEBPACK_IMPORTED_MODULE_0__["REGISTER_FAILURE"]:
       return _objectSpread({}, state, {
         error: error,
+        loading: false
+      });
+
+    case _action_actionTypes__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_SUCCESS"]:
+      return _objectSpread({}, state, {
+        accessToken: "",
+        user: "",
+        isLogin: false,
         loading: false
       });
 
