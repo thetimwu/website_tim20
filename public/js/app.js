@@ -108125,18 +108125,10 @@ var UserPanel = function UserPanel() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_action_authActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/action/authActions */ "./resources/js/components/store/action/authActions.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_action_authActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/action/authActions */ "./resources/js/components/store/action/authActions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -108156,31 +108148,31 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var useRegisterFormValidation = function useRegisterFormValidation(initialState, validateAuth) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     initialState: initialState
   }),
       _useState2 = _slicedToArray(_useState, 2),
       signUpUser = _useState2[0],
       setUser = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState4 = _slicedToArray(_useState3, 2),
       isSubmitted = _useState4[0],
       setSubmitted = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState6 = _slicedToArray(_useState5, 2),
       errors = _useState6[0],
       setError = _useState6[1];
 
-  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
   var url_signup = "http://tim.test:8080/api/user/register";
 
   var changeHandler = function changeHandler(e) {
     setUser(_objectSpread({}, signUpUser, _defineProperty({}, e.target.id, e.target.value)));
   };
 
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (isSubmitted) {
       var noError = Object.keys(errors).length === 0;
 
@@ -108198,73 +108190,45 @@ var useRegisterFormValidation = function useRegisterFormValidation(initialState,
     if (Object.keys(errors).length === 0 && errors.constructor === Object) {
       setSubmitted(true);
     }
-  };
+  }; // const makeRequest = useCallback(
+  //     async (username, email, password, passwordConfirm) => {
+  //         try {
+  //             const response = await axios.post(url_signup, {
+  //                 name: username,
+  //                 email: email,
+  //                 password: password,
+  //                 password_confirmation: passwordConfirm
+  //             });
+  //             if (response.status === 200) {
+  //                 console.log(response.data);
+  //                 dispatch(
+  //                     register_success(
+  //                         response.data.accessToken,
+  //                         response.data.user
+  //                     )
+  //                 );
+  //             } else {
+  //                 console.log(response);
+  //                 throw new Error("api calling error!");
+  //             }
+  //         } catch (e) {
+  //             console.error(e);
+  //             dispatch(register_failure(e));
+  //         }
+  //     },
+  //     [url_signup, dispatch]
+  // );
 
-  var makeRequest = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(
-  /*#__PURE__*/
-  function () {
-    var _ref = _asyncToGenerator(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(username, email, password, passwordConfirm) {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios.post(url_signup, {
-                name: username,
-                email: email,
-                password: password,
-                password_confirmation: passwordConfirm
-              });
 
-            case 3:
-              response = _context.sent;
-
-              if (!(response.status === 200)) {
-                _context.next = 9;
-                break;
-              }
-
-              console.log(response.data);
-              dispatch(Object(_store_action_authActions__WEBPACK_IMPORTED_MODULE_3__["register_success"])(response.data.accessToken, response.data.user));
-              _context.next = 11;
-              break;
-
-            case 9:
-              console.log(response);
-              throw new Error("api calling error!");
-
-            case 11:
-              _context.next = 17;
-              break;
-
-            case 13:
-              _context.prev = 13;
-              _context.t0 = _context["catch"](0);
-              console.error(_context.t0);
-              dispatch(Object(_store_action_authActions__WEBPACK_IMPORTED_MODULE_3__["register_failure"])(_context.t0));
-
-            case 17:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[0, 13]]);
-    }));
-
-    return function (_x, _x2, _x3, _x4) {
-      return _ref.apply(this, arguments);
-    };
-  }(), [url_signup, dispatch]);
+  var makeRequest = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (username, email, password, passwordConfirm) {
+    dispatch(Object(_store_action_authActions__WEBPACK_IMPORTED_MODULE_2__["register_success"])(username, email, password, passwordConfirm));
+  }, [url_signup, dispatch]);
 
   var submitHandler = function submitHandler(e) {
     e.preventDefault();
     setError(validateAuth(signUpUser));
     setSubmitted(true);
-    dispatch(Object(_store_action_authActions__WEBPACK_IMPORTED_MODULE_3__["register_request"])());
+    dispatch(Object(_store_action_authActions__WEBPACK_IMPORTED_MODULE_2__["register_request"])());
     var username = signUpUser.firstName + " " + signUpUser.lastName;
     makeRequest(username, signUpUser.email, signUpUser.password, signUpUser.passwordConfirm);
   };
@@ -108560,16 +108524,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register_success", function() { return register_success; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register_failure", function() { return register_failure; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout_success", function() { return logout_success; });
-/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actionTypes */ "./resources/js/components/store/action/actionTypes.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actionTypes */ "./resources/js/components/store/action/actionTypes.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var login_request = function login_request() {
   return {
-    type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__["LOGIN_REQUEST"]
+    type: _actionTypes__WEBPACK_IMPORTED_MODULE_1__["LOGIN_REQUEST"]
   };
 };
 var login_success = function login_success(accessToken, user) {
   return {
-    type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__["LOGIN_SUCCESS"],
+    type: _actionTypes__WEBPACK_IMPORTED_MODULE_1__["LOGIN_SUCCESS"],
     payload: {
       accessToken: accessToken,
       user: user
@@ -108578,30 +108553,99 @@ var login_success = function login_success(accessToken, user) {
 };
 var login_failure = function login_failure(error) {
   return {
-    type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__["LOGIN_FAILURE"],
+    type: _actionTypes__WEBPACK_IMPORTED_MODULE_1__["LOGIN_FAILURE"],
     payload: {},
     error: {
       error: error
     }
   };
-};
+}; // use thunk
+
 var register_request = function register_request() {
-  return {
-    type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__["REGISTER_REQUEST"]
+  return function (dispatch) {
+    dispatch({
+      type: _actionTypes__WEBPACK_IMPORTED_MODULE_1__["REGISTER_REQUEST"]
+    });
   };
 };
-var register_success = function register_success(accessToken, user) {
+
+var _register_success = function _register_success(accessToken, user) {
   return {
-    type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__["REGISTER_SUCCESS"],
+    type: _actionTypes__WEBPACK_IMPORTED_MODULE_1__["REGISTER_SUCCESS"],
     payload: {
       accessToken: accessToken,
       user: user
     }
   };
 };
+
+var url_register = "http://tim.test:8080/api/user/register";
+var register_success = function register_success(username, email, password, passwordConfirm) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(dispatch) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios.post(url_register, {
+                  name: username,
+                  email: email,
+                  password: password,
+                  password_confirmation: passwordConfirm
+                });
+
+              case 3:
+                response = _context.sent;
+                console.log(response);
+
+                if (!(response.status === 200)) {
+                  _context.next = 10;
+                  break;
+                }
+
+                console.log(response.data);
+                dispatch(_register_success(response.data.accessToken, response.data.user));
+                _context.next = 12;
+                break;
+
+              case 10:
+                console.log(response);
+                throw new Error("api calling error!");
+
+              case 12:
+                _context.next = 18;
+                break;
+
+              case 14:
+                _context.prev = 14;
+                _context.t0 = _context["catch"](0);
+                console.error(_context.t0);
+                dispatch(register_failure(_context.t0));
+
+              case 18:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 14]]);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
 var register_failure = function register_failure(error) {
   return {
-    type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__["REGISTER_FAILURE"],
+    type: _actionTypes__WEBPACK_IMPORTED_MODULE_1__["REGISTER_FAILURE"],
     payload: {},
     error: {
       error: error
@@ -108610,7 +108654,7 @@ var register_failure = function register_failure(error) {
 };
 var logout_success = function logout_success() {
   return {
-    type: _actionTypes__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_SUCCESS"]
+    type: _actionTypes__WEBPACK_IMPORTED_MODULE_1__["LOGOUT_SUCCESS"]
   };
 };
 

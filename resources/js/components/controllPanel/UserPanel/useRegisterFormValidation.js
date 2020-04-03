@@ -41,32 +41,41 @@ const useRegisterFormValidation = (initialState, validateAuth) => {
         }
     };
 
-    const makeRequest = useCallback(
-        async (username, email, password, passwordConfirm) => {
-            try {
-                const response = await axios.post(url_signup, {
-                    name: username,
-                    email: email,
-                    password: password,
-                    password_confirmation: passwordConfirm
-                });
+    // const makeRequest = useCallback(
+    //     async (username, email, password, passwordConfirm) => {
+    //         try {
+    //             const response = await axios.post(url_signup, {
+    //                 name: username,
+    //                 email: email,
+    //                 password: password,
+    //                 password_confirmation: passwordConfirm
+    //             });
 
-                if (response.status === 200) {
-                    console.log(response.data);
-                    dispatch(
-                        register_success(
-                            response.data.accessToken,
-                            response.data.user
-                        )
-                    );
-                } else {
-                    console.log(response);
-                    throw new Error("api calling error!");
-                }
-            } catch (e) {
-                console.error(e);
-                dispatch(register_failure(e));
-            }
+    //             if (response.status === 200) {
+    //                 console.log(response.data);
+    //                 dispatch(
+    //                     register_success(
+    //                         response.data.accessToken,
+    //                         response.data.user
+    //                     )
+    //                 );
+    //             } else {
+    //                 console.log(response);
+    //                 throw new Error("api calling error!");
+    //             }
+    //         } catch (e) {
+    //             console.error(e);
+    //             dispatch(register_failure(e));
+    //         }
+    //     },
+    //     [url_signup, dispatch]
+    // );
+
+    const makeRequest = useCallback(
+        (username, email, password, passwordConfirm) => {
+            dispatch(
+                register_success(username, email, password, passwordConfirm)
+            );
         },
         [url_signup, dispatch]
     );
@@ -78,6 +87,7 @@ const useRegisterFormValidation = (initialState, validateAuth) => {
         dispatch(register_request());
 
         const username = signUpUser.firstName + " " + signUpUser.lastName;
+
         makeRequest(
             username,
             signUpUser.email,

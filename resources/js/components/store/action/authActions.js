@@ -1,4 +1,5 @@
 import * as ActionTypes from "./actionTypes";
+const axios = require("axios");
 
 export const login_request = () => {
     return {
@@ -21,16 +22,52 @@ export const login_failure = error => {
     };
 };
 
-export const register_request = () => {
-    return {
+// use thunk
+export const register_request = () => dispatch => {
+    dispatch({
         type: ActionTypes.REGISTER_REQUEST
-    };
+    });
 };
 
-export const register_success = (accessToken, user) => {
+const _register_success = (accessToken, user) => {
     return {
         type: ActionTypes.REGISTER_SUCCESS,
         payload: { accessToken, user }
+    };
+};
+
+const url_register = `http://tim.test:8080/api/user/register`;
+export const register_success = (
+    username,
+    email,
+    password,
+    passwordConfirm
+) => {
+    return async dispatch => {
+        try {
+            const response = await axios.post(url_register, {
+                name: username,
+                email: email,
+                password: password,
+                password_confirmation: passwordConfirm
+            });
+            console.log(response);
+            if (response.status === 200) {
+                console.log(response.data);
+                dispatch(
+                    _register_success(
+                        response.data.accessToken,
+                        response.data.user
+                    )
+                );
+            } else {
+                console.log(response);
+                throw new Error("api calling error!");
+            }
+        } catch (e) {
+            console.error(e);
+            dispatch(register_failure(e));
+        }
     };
 };
 
