@@ -51,7 +51,6 @@ export const register_success = (
                 password: password,
                 password_confirmation: passwordConfirm
             });
-            console.log(response);
             if (response.status === 200) {
                 console.log(response.data);
                 dispatch(
@@ -79,8 +78,27 @@ export const register_failure = error => {
     };
 };
 
-export const logout_success = () => {
+const _logout_success = () => {
     return {
         type: ActionTypes.LOGOUT_SUCCESS
+    };
+};
+
+// use thunk
+const url_logout = `http://tim.test:8080/api/user/logout`;
+export const logout_success = () => {
+    console.log("logging out...");
+    return async dispatch => {
+        try {
+            const res = await axios.post(url_logout);
+            if (res.status === 200) {
+                console.log(res);
+                dispatch(_logout_success());
+            } else {
+                console.log(res);
+            }
+        } catch (e) {
+            console.log(e);
+        }
     };
 };

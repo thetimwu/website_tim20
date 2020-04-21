@@ -108603,38 +108603,37 @@ var register_success = function register_success(username, email, password, pass
 
               case 3:
                 response = _context.sent;
-                console.log(response);
 
                 if (!(response.status === 200)) {
-                  _context.next = 10;
+                  _context.next = 9;
                   break;
                 }
 
                 console.log(response.data);
                 dispatch(_register_success(response.data.accessToken, response.data.user));
-                _context.next = 12;
+                _context.next = 11;
                 break;
 
-              case 10:
+              case 9:
                 console.log(response);
                 throw new Error("api calling error!");
 
-              case 12:
-                _context.next = 18;
+              case 11:
+                _context.next = 17;
                 break;
 
-              case 14:
-                _context.prev = 14;
+              case 13:
+                _context.prev = 13;
                 _context.t0 = _context["catch"](0);
                 console.error(_context.t0);
                 dispatch(register_failure(_context.t0));
 
-              case 18:
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 14]]);
+        }, _callee, null, [[0, 13]]);
       }));
 
       return function (_x) {
@@ -108652,10 +108651,63 @@ var register_failure = function register_failure(error) {
     }
   };
 };
-var logout_success = function logout_success() {
+
+var _logout_success = function _logout_success() {
   return {
     type: _actionTypes__WEBPACK_IMPORTED_MODULE_1__["LOGOUT_SUCCESS"]
   };
+}; // use thunk
+
+
+var url_logout = "http://tim.test:8080/api/user/logout";
+var logout_success = function logout_success() {
+  console.log("logging out...");
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref2 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(dispatch) {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios.post(url_logout);
+
+              case 3:
+                res = _context2.sent;
+
+                if (res.status === 200) {
+                  console.log(res);
+                  dispatch(_logout_success());
+                } else {
+                  console.log(res);
+                }
+
+                _context2.next = 10;
+                break;
+
+              case 7:
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 7]]);
+      }));
+
+      return function (_x2) {
+        return _ref2.apply(this, arguments);
+      };
+    }()
+  );
 };
 
 /***/ }),
