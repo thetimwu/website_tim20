@@ -17,10 +17,13 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::resource('users', 'UserController');
+Route::apiResource('users', 'UserController');
 
 Route::prefix('user')->group(function () {
     Route::post('/login', 'api\LoginController@login')->name('login');
     Route::post('/logout', 'api\LoginController@logout')->name('logout');
     Route::post('/register', 'api\RegisterController@register')->name('register');
 });
+
+Route::apiResource('tags', 'TagController');
+Route::apiResource('articles', 'ArticleController');
