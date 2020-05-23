@@ -28,18 +28,23 @@ class LoginController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        dd(Auth::user());
-        if (Auth::check()) {
-            Auth::user()->AauthAcessToken()->delete();
-            return response()->json([
-                'message' => 'Successfully logged out'
-            ], 200);
-        } else {
-            return response()->json([
-                'message' => 'cannot find user'
-            ]);
-        };
+        $user = User::find($request->input('userId'));
+        // dd($user->AauthAccessToken());
+        $user->AauthAccessToken()->delete();
+        Auth::logout();
+        // if (Auth::check()) {
+        //     Auth::user()->AauthAcessToken()->delete();
+        //     dd('logout success');
+        //     return response()->json([
+        //         'message' => 'Successfully logged out'
+        //     ], 200);
+        // } else {
+        //     dd('cannot find user');
+        //     return response()->json([
+        //         'message' => 'cannot find user'
+        //     ]);
+        // };
     }
 }

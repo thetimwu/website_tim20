@@ -86,13 +86,13 @@ const _logout_success = () => {
 
 // use thunk
 const url_logout = `http://tim.test:8080/api/user/logout`;
-export const logout_success = () => {
+export const logout_success = id => {
     console.log("logging out...");
     return async dispatch => {
         try {
-            const res = await axios.post(url_logout);
+            const res = await axios.post(url_logout, { userId: id });
             if (res.status === 200) {
-                console.log(res);
+                // console.log(res);
                 dispatch(_logout_success());
             } else {
                 console.log(res);

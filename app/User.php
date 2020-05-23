@@ -40,7 +40,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function AauthAcessToken()
+    public function AauthAccessToken()
     {
         return $this->hasMany(OauthAccessToken::class);
     }

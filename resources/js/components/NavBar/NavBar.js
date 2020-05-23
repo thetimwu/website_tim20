@@ -62,6 +62,7 @@ const NavBar = () => {
     };
 
     const isLogin = useSelector(state => state.authReducer.accessToken);
+    const user = useSelector(state => state.authReducer.user);
     const dispatch = useDispatch();
     useEffect(() => {
         isLogin && setOpen(false);
@@ -90,7 +91,7 @@ const NavBar = () => {
                     {isLogin ? (
                         <Button
                             color="inherit"
-                            onClick={() => dispatch(logout_success())}
+                            onClick={() => dispatch(logout_success(user.id))}
                         >
                             Logout
                         </Button>

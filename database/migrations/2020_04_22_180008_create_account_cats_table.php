@@ -30,3 +30,4 @@ class CreateAccountCatsTable extends Migration
         Schema::dropIfExists('categories');
     }
 }
+
