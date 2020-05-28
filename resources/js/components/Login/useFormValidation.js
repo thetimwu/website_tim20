@@ -16,6 +16,7 @@ const useFormValidation = (initialState, validate) => {
     // const password = useSelector(state => state.password);
     const dispatch = useDispatch();
     const url_login = `http://tim.test:8080/api/user/login`;
+    // const url_login = `http://tim.test:8080/oauth/token`;
 
     useEffect(() => {
         if (isSubmitting) {
@@ -61,18 +62,18 @@ const useFormValidation = (initialState, validate) => {
         async (email, password) => {
             try {
                 const response = await axios.post(url_login, {
-                    email: email,
+                    username: email,
                     password: password
                 });
 
                 if (response.status === 200) {
                     console.log(response.data);
-                    dispatch(
-                        login_success(
-                            response.data.accessToken,
-                            response.data.user
-                        )
-                    );
+                    // dispatch(
+                    //     login_success(
+                    //         response.data.accessToken,
+                    //         response.data.user
+                    //     )
+                    // );
                 } else {
                     console.log(response);
                     throw new Error("api calling error!");

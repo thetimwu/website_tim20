@@ -15,14 +15,8 @@
 //     return view('layouts.appTim');
 // })->where('reactRoutes', '^((?!api).)*$'); // except 'api' word;
 
-// Route::view('/{path?}', 'layouts.appTim')->where('path', '^((?!api).)*$')->name('react');
-
-Route::view('/{path?}', 'layouts.appTim')->name('react');
-
-// $name = request('name');
-
-// Route::view('/tim', 'tim.tim', ['name' => $name]);
-
+Route::view('/{path?}', 'layouts.appTim')->where('path', '^((?!api).)*$')->name('react');
+// Route::view('/{path?}', 'layouts.appTim')->where('path', '^((?!oauth).)*$')->name('react');
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

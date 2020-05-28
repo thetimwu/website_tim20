@@ -105394,7 +105394,8 @@ var useFormValidation = function useFormValidation(initialState, validate) {
 
 
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
-  var url_login = "http://tim.test:8080/api/user/login";
+  var url_login = "http://tim.test:8080/api/user/login"; // const url_login = `http://tim.test:8080/oauth/token`;
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     if (isSubmitting) {
       var noError = Object.keys(error).length === 0;
@@ -105443,7 +105444,7 @@ var useFormValidation = function useFormValidation(initialState, validate) {
               _context.prev = 0;
               _context.next = 3;
               return axios.post(url_login, {
-                email: email,
+                username: email,
                 password: password
               });
 
@@ -105451,35 +105452,40 @@ var useFormValidation = function useFormValidation(initialState, validate) {
               response = _context.sent;
 
               if (!(response.status === 200)) {
-                _context.next = 9;
+                _context.next = 8;
                 break;
               }
 
-              console.log(response.data);
-              dispatch(Object(_store_action_authActions__WEBPACK_IMPORTED_MODULE_3__["login_success"])(response.data.accessToken, response.data.user));
-              _context.next = 11;
+              console.log(response.data); // dispatch(
+              //     login_success(
+              //         response.data.accessToken,
+              //         response.data.user
+              //     )
+              // );
+
+              _context.next = 10;
               break;
 
-            case 9:
+            case 8:
               console.log(response);
               throw new Error("api calling error!");
 
-            case 11:
-              _context.next = 17;
+            case 10:
+              _context.next = 16;
               break;
 
-            case 13:
-              _context.prev = 13;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](0);
               console.error(_context.t0);
               dispatch(Object(_store_action_authActions__WEBPACK_IMPORTED_MODULE_3__["login_failure"])(_context.t0));
 
-            case 17:
+            case 16:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 13]]);
+      }, _callee, null, [[0, 12]]);
     }));
 
     return function (_x, _x2) {

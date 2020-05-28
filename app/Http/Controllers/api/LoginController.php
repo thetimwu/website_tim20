@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('guest')->except('logout');
+    // }
+
     public function login(Request $request)
     {
         $credential = $request->only('email', 'password');
@@ -31,15 +36,13 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $user = User::find($request->input('userId'));
-        // dd($user->AauthAccessToken());
         $user->AauthAccessToken()->delete();
         Auth::logout();
         // if (Auth::check()) {
         //     Auth::user()->AauthAcessToken()->delete();
-        //     dd('logout success');
-        //     return response()->json([
-        //         'message' => 'Successfully logged out'
-        //     ], 200);
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ], 200);
         // } else {
         //     dd('cannot find user');
         //     return response()->json([

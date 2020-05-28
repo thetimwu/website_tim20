@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Laravel\Passport\Http\Controllers\AccessTokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,8 @@ use Illuminate\Http\Request;
 Route::apiResource('users', 'UserController');
 
 Route::prefix('user')->group(function () {
-    Route::post('/login', 'api\LoginController@login')->name('login');
+    Route::post('/login', [AccessTokenController::class, 'issueToken'])
+        ->middleware(['api-login', 'throttle'])->name('login');
     Route::post('/logout', 'api\LoginController@logout')->name('logout');
     Route::post('/register', 'api\RegisterController@register')->name('register');
 });
