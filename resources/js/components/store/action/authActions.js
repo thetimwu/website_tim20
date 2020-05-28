@@ -7,10 +7,10 @@ export const login_request = () => {
     };
 };
 
-export const login_success = (accessToken, user) => {
+export const login_success = (accessToken, refreshToken) => {
     return {
         type: ActionTypes.LOGIN_SUCCESS,
-        payload: { accessToken, user }
+        payload: { accessToken, refreshToken }
     };
 };
 

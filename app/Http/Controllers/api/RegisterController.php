@@ -28,14 +28,14 @@ class RegisterController extends Controller
 
         $user = User::create($validatedUser);
 
-        $accessToken = $user->createToken('access_token')->accessToken;
+        // $accessToken = $user->createToken('access_token')->accessToken;
 
         // $user->save();
 
         return response()->json([
             'message' => 'Successfully register user',
             'user' => $user,
-            'accessToken' => $accessToken
+            // 'accessToken' => $accessToken
         ], 200);
     }
 }

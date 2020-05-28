@@ -107365,12 +107365,12 @@ var login_request = function login_request() {
     type: _actionTypes__WEBPACK_IMPORTED_MODULE_1__["LOGIN_REQUEST"]
   };
 };
-var login_success = function login_success(accessToken, user) {
+var login_success = function login_success(accessToken, refreshToken) {
   return {
     type: _actionTypes__WEBPACK_IMPORTED_MODULE_1__["LOGIN_SUCCESS"],
     payload: {
       accessToken: accessToken,
-      user: user
+      refreshToken: refreshToken
     }
   };
 };
